@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace DependeencyInjectionusingPropertyInjection
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
+            //Create an Instance of Client Class i.e. EmployeeBL 
+            EmployeeBL employeeBL = new EmployeeBL();
+            //Inject the Dependency Object using the Public Property of the Client Class
+            employeeBL.EmployeeDataObject = new EmployeeDAL();
+            List<Employee> ListEmployee = employeeBL.GetAllEmployees();
+            foreach (Employee emp in ListEmployee)
+            {
+                Console.WriteLine($"ID = {emp.ID}, Name = {emp.Name}, Department = {emp.Department}");
+            }
+            Console.ReadKey();
         }
     }
 }
